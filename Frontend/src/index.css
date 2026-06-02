@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
+
 body{
 background-color: var(--backgroundLight);
 }
 
 :root
 {
+
+    
+
     /* Brand Colors */
     --primaryColor: #1F3FAF;
     --primaryColorHover: #17358F;
@@ -14,7 +18,7 @@ background-color: var(--backgroundLight);
     /* Text Colors */
     --primaryText: #0F172A;
     --secondaryText: #475569;
-    --lightText: #64748B;
+    --lightText: #89919b;
     --whiteText: #FFFFFF;
 
     /* CTA Buttons */
