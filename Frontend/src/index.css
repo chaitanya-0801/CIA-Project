@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+body{
+background-color: var(--backgroundLight);
+}
+
+:root
+{
+    /* Brand Colors */
+    --primaryColor: #1F3FAF;
+    --primaryColorHover: #17358F;
+    --secondaryColor: #2948B8;
+
+    /* Text Colors */
+    --primaryText: #0F172A;
+    --secondaryText: #475569;
+    --lightText: #64748B;
+    --whiteText: #FFFFFF;
+
+    /* CTA Buttons */
+    --primaryCtaBg: #1F3FAF;
+    --primaryCtaBorder: #1F3FAF;
+    --primaryCtaText: #FFFFFF;
+
+    --secondaryCtaBg: #FFFFFF;
+    --secondaryCtaBorder: #1F3FAF;
+    --secondaryCtaBorder: #b8c5f4;
+    --secondaryCtaText: #1F3FAF;
+
+    /* Backgrounds */
+    --background: #FFFFFF;
+    --backgroundLight: #d1dbff;
+    --backgroundSecondary: #F8FAFC;
+    --backgroundCard: #FFFFFF;
+    --backgroundDark: #0F172A;
+
+    /* Borders */
+    --borderColor: #E2E8F0;
+    --borderColorDark: #CBD5E1;
+
+    /* Status Colors */
+    --success: #16A34A;
+    --warning: #F59E0B;
+    --error: #DC2626;
+
+    /* Shadows */
+    --shadowColor: rgba(15, 23, 42, 0.08);
+
+    /* Hero Gradient */
+    --heroGradientStart: #1F3FAF;
+    --heroGradientEnd: #2948B8;
+}
+
+.dark
+{
+    --primaryColor: #4F7BFF;
+    --primaryColorHover: #6B8CFF;
+    --secondaryColor: #7DA2FF;
+
+    --primaryText: #F8FAFC;
+    --secondaryText: #CBD5E1;
+    --lightText: #94A3B8;
+    --whiteText: #FFFFFF;
+
+    --primaryCtaBg: #4F7BFF;
+    --primaryCtaBorder: #4F7BFF;
+    --primaryCtaText: #FFFFFF;
+
+    --secondaryCtaBg: transparent;
+    --secondaryCtaBorder: #4F7BFF;
+    --secondaryCtaText: #4F7BFF;
+
+    --background: #0F172A;
+    --backgroundLight: #0F172A;
+    --backgroundSecondary: #1E293B;
+    --backgroundCard: #1E293B;
+    --backgroundDark: #020617;
+
+    --borderColor: #334155;
+    --borderColorDark: #475569;
+
+    --success: #22C55E;
+    --warning: #FBBF24;
+    --error: #EF4444;
+
+    --shadowColor: rgba(0, 0, 0, 0.3);
+
+    --heroGradientStart: #17358F;
+    --heroGradientEnd: #4F7BFF;
+}
