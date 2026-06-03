@@ -1,11 +1,12 @@
 import Landing from "../../assets/Landing.png";
 import CTAButton from "../Common/CTAButton";
-
+import { useNavigate } from "react-router-dom";
 import services from "../../Data/Services";
 
-import { MdWork } from "react-icons/md";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div
       className="w-full min-h-[90vh] bg-linear-to-br 
@@ -52,7 +53,7 @@ to-[#2948B8] flex flex-col-reverse lg:flex-row items-center justify-between px-6
             text="Get In Tounch"
             className="bg-(--secondaryCtaBg) border-2 border-(--secondaryCtaBorder) text-(--secondaryCtaText) text-lg font-semibold hover:scale-105 transition"
             onClick={() => {
-              console.log("Hello");
+              navigate("/contact-us");
             }}
           />
         </div>

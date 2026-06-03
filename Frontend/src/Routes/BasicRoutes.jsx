@@ -8,6 +8,14 @@ import ContactPage from "../Pages/ContactPage";
 import AboutPage from "../Pages/AboutPage";
 import ServicesPage from "../Pages/ServicesPage";
 import SuccessStoryPage from "../Pages/SuccessStoryPage";
+import ErrorPage from "../Pages/ErrorPage";
+
+
+import StudyVisa from '../Component/AllServicesDetail/StudyVisa'
+import WorkVisa from '../Component/AllServicesDetail/WorkVisa'
+import VisitorVisa from '../Component/AllServicesDetail/VisitorVisa'
+import TouristVisa from '../Component/AllServicesDetail/TouristVisa'
+import AirTickets from '../Component/AllServicesDetail/AirTicket'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +46,30 @@ const router = createBrowserRouter([
         path: "success-stories",
         element: <SuccessStoryPage />,
       },
+      {
+        path: "study-visa",
+        element: <StudyVisa />,
+      },
+      {
+        path: "work-visa",
+        element: <WorkVisa />,
+      },
+      {
+        path: "visitor-visa",
+        element: <VisitorVisa />,
+      },
+      {
+        path: "tourist-visa",
+        element: <TouristVisa />,
+      },
+      {
+        path: "air-tickets",
+        element: <AirTickets />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      }
     ],
   },
 ]);
