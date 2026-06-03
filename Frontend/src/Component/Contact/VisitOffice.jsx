@@ -23,8 +23,8 @@ const VisitOffice = () => {
               Office Address
             </h4>
 
-            <p>Chaudhary Immigration Academy</p>
-            <p>Kurukshetra, Haryana</p>
+            <p className="font-bold">Chaudhary Immigration Academy</p>
+            <p>Opp. BDPO Office, Ladwa, Kurukshetra, Haryana</p>
 
             <a
               href="https://maps.google.com"

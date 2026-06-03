@@ -67,7 +67,7 @@ export const ContactInfo = [
   },
   {
     icon: FaPhone,
-    value: "+91 9876543210",
+    value: "+91 8295280143",
   },
   {
     icon: FaEnvelope,
