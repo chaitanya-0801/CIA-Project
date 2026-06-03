@@ -10,7 +10,7 @@ const DirectorMessage = () => {
           <img
             src={Director}
             alt="Director"
-            className="w-full h-full object-cover min-h-[500px]"
+            className="w-full h-full object-cover min-h-125"
           />
         </div>
 

@@ -28,7 +28,7 @@ const OurTeam = () => {
         hover:-translate-y-2
         transition-all
         duration-300
-        w-[450px]
+        w-112.5
       "
     >
       <img
