@@ -35,7 +35,12 @@ const Login = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    console.log(token)
+    const admin = {
+  name: findUser.name,
+  email: findUser.email,
+  role: findUser.role,
+  contactNumber: findUser.contactNumber,
+};
     res
       .cookie("token", token, {
         httpOnly: true,
@@ -45,11 +50,11 @@ const Login = async (req, res) => {
       .status(200)
       .json({
         message: "Login Successful",
+        success:true,
+      token,
+      admin
       });
 
-    return res.status(200).json({
-      message: "Login Successful",
-    });
   } catch (error) {
     console.error(error);
 
@@ -92,6 +97,19 @@ const createMoreAdmin = async (req, res) => {
   }
 };
 
+const allAdmins = async (req, res) => {
+  try {
+    const allAdminData = await adminModel.find();
+    res.status(200).json({
+      success: true,
+      allAdminData
+    })
+  } catch (error) {
+     res.status(500).json({
+      message: error.message,
+    });
+  }
+}
 
 // const newSuccessStory = async (req, res) => {
 //   try {
@@ -116,4 +134,4 @@ const createMoreAdmin = async (req, res) => {
 //   }
 // };
 
-export { Login, createMoreAdmin };
+export { Login, createMoreAdmin,allAdmins };

@@ -44,11 +44,58 @@ const html2=adminEnquiryTemplate({
 const getAllContactForms = async (req, res) => {
   try {
     const contactForms = await ContactForm.find();
-    res.status(200).json(contactForms);
+    res.status(200).json({
+      success:true,
+      contactForms
+    });
   } catch (error) {
     console.error("Error fetching contact forms:", error);
     res.status(500).json({ message: "Failed to fetch contact forms" });
   }
 };
 
-export { newContactForm, getAllContactForms };
+ const updateContactFormStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!["Pending", "In Progress", "Resolved"].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status",
+      });
+    }
+
+    const updatedQuery = await ContactForm.findByIdAndUpdate(
+      id,
+      { status },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedQuery) {
+      return res.status(404).json({
+        success: false,
+        message: "Query not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Status updated successfully",
+      query: updatedQuery,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+
+export { newContactForm, getAllContactForms,updateContactFormStatus };

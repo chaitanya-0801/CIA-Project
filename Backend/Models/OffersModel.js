@@ -7,16 +7,21 @@ const OfferSchema = new mongoose.Schema({
   },
   startDate: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
     required: true,
   },
   name: {
     type: String,
     required: true,
-  },
+    },
+  
   description: {
     type: String,
     required: true,
+    },
+    requirements: {
+        type: String,
+        required:true,
   },
   lastDate: {
     type: Date,
