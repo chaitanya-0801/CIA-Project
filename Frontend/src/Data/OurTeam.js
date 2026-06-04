@@ -1,4 +1,4 @@
-import Director from "../assets/Director.jpeg";
+import Director from "../assets/Director.jpg";
 
 const OurTeamData = [
   {
