@@ -71,7 +71,7 @@ export const ContactInfo = [
   },
   {
     icon: FaEnvelope,
-    value: "info@cia.com",
+    value: "cialadwa@gmail.com",
   },
 ];
 
@@ -93,4 +93,3 @@ export const SocialLinks = [
     link: "https://youtube.com",
   },
 ];
-

@@ -6,14 +6,14 @@ const newSuccessStory = async (req, res) => {
     const { name, country, serviceType, message } = req.body;
     const image = req.files.imageUrl;
 
-    const imageUrl = await uploadImage(image.tempFilePath);
-    console.log(imageUrl);
+    const imagepath = await uploadImage(image.tempFilePath);
+    console.log(imagepath);
     const successStory = new SuccessStory({
       name,
       country,
       serviceType,
       message,
-      imageUrl,
+      imageUrl:path,
     });
     await successStory.save();
     res.status(201).json({ message: "Success story created successfully" });

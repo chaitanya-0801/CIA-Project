@@ -6,6 +6,8 @@ import {
   VscSmiley
 } from "react-icons/vsc";
 
+import { BiSolidOffer } from "react-icons/bi";
+
 const NavBarLinks = [
   {
     name: "Home",
@@ -13,9 +15,9 @@ const NavBarLinks = [
     icon: VscHome,
   },
   {
-    name: "Contact Us",
-    link: "/contact-us",
-    icon: VscMail,
+    name: "Offers",
+    link: "/all-offers",
+    icon: BiSolidOffer,
   },
   {
     name: "About Us",
@@ -31,6 +33,11 @@ const NavBarLinks = [
     name: "Success Stories",
     link: "/success-stories",
     icon: VscSmiley,
+  },
+  {
+    name: "Contact Us",
+    link: "/contact-us",
+    icon: VscMail,
   },
 ];
 

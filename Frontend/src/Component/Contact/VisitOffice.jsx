@@ -8,20 +8,16 @@ import {
 const VisitOffice = () => {
   return (
     <div className="flex-1 bg-white p-8 rounded-2xl shadow-lg">
-
       <h2 className="text-3xl font-bold text-(--primaryText)">
         Visit Our Office
       </h2>
 
       <div className="mt-8 flex flex-col gap-8">
-
         <div className="flex gap-4">
           <FaMapMarkerAlt className="text-2xl text-(--primaryColor)" />
 
           <div>
-            <h4 className="font-semibold">
-              Office Address
-            </h4>
+            <h4 className="font-semibold">Office Address</h4>
 
             <p className="font-bold">Chaudhary Immigration Academy</p>
             <p>Opp. BDPO Office, Ladwa, Kurukshetra, Haryana</p>
@@ -41,13 +37,9 @@ const VisitOffice = () => {
           <FaPhone className="text-2xl text-(--primaryColor)" />
 
           <div>
-            <h4 className="font-semibold">
-              Phone Number
-            </h4>
+            <h4 className="font-semibold">Phone Number</h4>
 
-            <a href="tel:+918295280143">
-              +91 82952 80143
-            </a>
+            <a href="tel:+918295280143">+91 82952 80143</a>
           </div>
         </div>
 
@@ -55,13 +47,9 @@ const VisitOffice = () => {
           <FaEnvelope className="text-2xl text-(--primaryColor)" />
 
           <div>
-            <h4 className="font-semibold">
-              Email Address
-            </h4>
+            <h4 className="font-semibold">Email Address</h4>
 
-            <a href="mailto:info@cia.com">
-              info@cia.com
-            </a>
+            <a href="mailto:cialadwa@gmail.com">cialadwa@gmail.com</a>
           </div>
         </div>
 
@@ -69,9 +57,7 @@ const VisitOffice = () => {
           <FaWhatsapp className="text-2xl text-green-500" />
 
           <div>
-            <h4 className="font-semibold">
-              WhatsApp Support
-            </h4>
+            <h4 className="font-semibold">WhatsApp Support</h4>
 
             <a
               href="https://wa.me/918295280143"
@@ -93,9 +79,7 @@ const VisitOffice = () => {
             loading="lazy"
           />
         </div>
-
       </div>
-
     </div>
   );
 };

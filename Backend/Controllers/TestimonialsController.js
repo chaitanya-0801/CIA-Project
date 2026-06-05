@@ -6,18 +6,22 @@ import reviewThankYouTemplate from '../MailTemplete/reviewThankYouTemplate.js'
 const addReview = async (req, res) => {
     try {
         const { name, rating, message,email } = req.body;
-       const image = req.files.imageUrl;
-
-    const imageUrl = await uploadImage(image.tempFilePath);
-        if (!imageUrl) {
-            imageUrl=`https://ui-avatars.com/api/?name=${name}`
+       const image = req.files?.imageUrl;
+        let imagepath=null;
+       if (!image) {
+           imagepath=`https://ui-avatars.com/api/?name=${name}`
         }
+       else
+       {
+           
+         imagepath = await uploadImage(image.tempFilePath);
+           }
         const testimonial = new Testimonial({
             name,
             email,
             rating,
             message,
-            imageUrl,
+            imageUrl:imagepath,
         });
         await testimonial.save();
 

@@ -3,12 +3,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout";
 
 import HomePage from "../Pages/HomePage";
-import AddReviewPage from "../Pages/AddReviewPage";
 import ContactPage from "../Pages/ContactPage";
 import AboutPage from "../Pages/AboutPage";
 import ServicesPage from "../Pages/ServicesPage";
 import SuccessStoryPage from "../Pages/SuccessStoryPage";
 import ErrorPage from "../Pages/ErrorPage";
+import Offer from "../Component/Offers";
 
 
 import StudyVisa from '../Component/AllServicesDetail/StudyVisa'
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "add-review",
-        element: <AddReviewPage />,
+        path: "all-offers",
+        element: <Offer />,
       },
       {
         path: "contact-us",

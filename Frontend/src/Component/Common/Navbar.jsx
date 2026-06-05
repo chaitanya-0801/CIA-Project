@@ -4,10 +4,13 @@ import NavBarLinks from "../../Data/Navbar";
 import { NavLink, useNavigate } from "react-router-dom";
 import CTAButton from "./CTAButton";
 import { FaBars, FaTimes } from "react-icons/fa";
+import AddReview from "../AddReview";
+// import AddReview from "../AddReview";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [showReview, setShowReview] = useState(false);
 
   return (
     <div className="sticky top-0 z-50 bg-(--whiteText) shadow-md">
@@ -58,7 +61,7 @@ const Navbar = () => {
               transition-all
               duration-300
             "
-            onClick={() => navigate("/add-review")}
+          onClick={() => setShowReview(true)}
           />
         </div>
 
@@ -116,12 +119,13 @@ const Navbar = () => {
               text-(--whiteText)
               mt-2
             "
-            onClick={() => {
-              navigate("/add-review");
-              setIsOpen(false);
-            }}
+            onClick={() => setShowReview(true)}
           />
         </div>
+      )}
+
+       {showReview && (
+        <AddReview onClose={() => setShowReview(false)} />
       )}
 
     </div>
