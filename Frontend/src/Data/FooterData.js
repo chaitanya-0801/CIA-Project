@@ -30,11 +30,7 @@ export const QuickLinks = [
   {
     name: "Contact Us",
     link: "/contact-us",
-  },
-  {
-    name: "Add Review",
-    link: "/add-review",
-  },
+  }
 ];
 
 export const ServicesLinks = [

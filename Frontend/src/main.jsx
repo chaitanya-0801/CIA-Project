@@ -8,7 +8,7 @@ import router from './Routes/BasicRoutes.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <ToastContainer position="top-right" />
+      <ToastContainer position="top-center" />
     <RouterProvider router={router}/>
       
   </StrictMode>,
