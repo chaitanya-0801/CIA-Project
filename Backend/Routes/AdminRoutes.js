@@ -33,7 +33,7 @@ adminRoutes.get("/demo", (req, res) => {
 adminRoutes.post("/login", Login);
 
 adminRoutes.post("/add-story", checkAdmin, newSuccessStory);
-adminRoutes.post("/update-story/:id", checkAdmin, updateSuccessStory);
+adminRoutes.put("/update-story/:id", checkAdmin, updateSuccessStory);
 adminRoutes.delete("/delete-story/:id", checkAdmin, deleteSuccessStory);
 
 adminRoutes.get("/contact-forms", checkAdmin, getAllContactForms);

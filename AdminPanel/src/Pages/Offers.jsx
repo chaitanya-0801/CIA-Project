@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../Config/axiosInstance";
 import toast from "react-hot-toast";
-import {
-  FaPlus,
-  FaEdit,
-  FaTrash,
-  FaEye,
-  FaTimes,
-} from "react-icons/fa";
+import { FaPlus, FaEdit, FaTrash, FaEye, FaTimes } from "react-icons/fa";
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [showModal, setShowModal] = useState(false);
-  const [showViewModal, setShowViewModal] =
-    useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
 
-  const [selectedOffer, setSelectedOffer] =
-    useState(null);
+  const [selectedOffer, setSelectedOffer] = useState(null);
 
-  const [previewImage, setPreviewImage] =
-    useState("");
+  const [previewImage, setPreviewImage] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -38,9 +29,7 @@ const Offers = () => {
     try {
       setLoading(true);
 
-      const response = await axiosInstance.get(
-        "/getoffer"
-      );
+      const response = await axiosInstance.get("/getoffer");
 
       if (response.data.success) {
         setOffers(response.data.offers || []);
@@ -109,10 +98,8 @@ const Offers = () => {
       name: offer.name,
       description: offer.description,
       requirements: offer.requirements,
-      startDate:
-        offer.startDate?.split("T")[0] || "",
-      lastDate:
-        offer.lastDate?.split("T")[0] || "",
+      startDate: offer.startDate?.split("T")[0] || "",
+      lastDate: offer.lastDate?.split("T")[0] || "",
       posterUrl: null,
     });
 
@@ -126,71 +113,53 @@ const Offers = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    const toastId = toast.loading(
+         selectedOffer ? "Updating Offer..." : "Adding Offer...",
+       );
+
     try {
       const data = new FormData();
 
       if (formData.posterUrl) {
-        data.append(
-          "posterUrl",
-          formData.posterUrl
-        );
+        data.append("posterUrl", formData.posterUrl);
       }
 
       data.append("name", formData.name);
 
-      data.append(
-        "description",
-        formData.description
-      );
+      data.append("description", formData.description);
 
-      data.append(
-        "requirements",
-        formData.requirements
-      );
+      data.append("requirements", formData.requirements);
 
-      data.append(
-        "startDate",
-        formData.startDate
-      );
+      data.append("startDate", formData.startDate);
 
-      data.append(
-        "lastDate",
-        formData.lastDate
-      );
+      data.append("lastDate", formData.lastDate);
 
       if (selectedOffer) {
-        const response =
-          await axiosInstance.put(
-            `/admin/update-offer/${selectedOffer._id}`,
-            data,
-            {
-              headers: {
-                "Content-Type":
-                  "multipart/form-data",
-              },
-            }
-          );
+        const response = await axiosInstance.put(
+          `/admin/update-offer/${selectedOffer._id}`,
+          data,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
 
         if (response.data.success) {
-          toast.success("Offer Updated");
+          toast.success("Offer Updated", {
+            id:toastId,
+          });
         }
       } else {
-        const response =
-          await axiosInstance.post(
-            "/admin/add-offer",
-            data,
-            {
-              headers: {
-                "Content-Type":
-                  "multipart/form-data",
-              },
-            }
-          );
+        const response = await axiosInstance.post("/admin/add-offer", data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-        toast.success(
-          response.data.message ||
-            "Offer Added Successfully"
-        );
+        toast.success(response.data.message || "Offer Added Successfully", {
+          id:toastId,
+        });
       }
 
       fetchOffers();
@@ -198,10 +167,9 @@ const Offers = () => {
     } catch (error) {
       console.log(error);
 
-      toast.error(
-        error?.response?.data?.message ||
-          "Operation Failed"
-      );
+      toast.error(error?.response?.data?.message || "Operation Failed", {
+        id:toastId,
+      });
     }
   };
 
@@ -209,16 +177,13 @@ const Offers = () => {
 
   const deleteOffer = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this offer?"
+      "Are you sure you want to delete this offer?",
     );
 
     if (!confirmDelete) return;
 
     try {
-      const response =
-        await axiosInstance.delete(
-          `/admin/delete-offer/${id}`
-        );
+      const response = await axiosInstance.delete(`/admin/delete-offer/${id}`);
 
       if (response.data.success) {
         toast.success("Offer Deleted");
@@ -233,15 +198,11 @@ const Offers = () => {
 
   return (
     <div className="p-8 bg-(--backgroundLight) min-h-screen">
-
       {/* HEADER */}
 
       <div className="flex justify-between items-center mb-8">
-
         <div>
-          <h1 className="text-4xl font-bold">
-            Manage Offers
-          </h1>
+          <h1 className="text-4xl font-bold">Manage Offers</h1>
 
           <p className="text-gray-500 mt-2">
             Create, Edit and Manage all offers.
@@ -265,45 +226,28 @@ const Offers = () => {
           <FaPlus />
           Add Offer
         </button>
-
       </div>
 
       {/* TABLE */}
 
       <div className="bg-white rounded-xl shadow-md overflow-hidden">
-
         <div className="overflow-x-auto">
-
           <table className="w-full">
-
             <thead className="bg-(--primaryColor) text-white">
-
               <tr>
-                <th className="p-4 text-left">
-                  Poster
-                </th>
+                <th className="p-4 text-left">Poster</th>
 
-                <th className="p-4 text-left">
-                  Offer Name
-                </th>
+                <th className="p-4 text-left">Offer Name</th>
 
-                <th className="p-4 text-left">
-                  Start Date
-                </th>
+                <th className="p-4 text-left">Start Date</th>
 
-                <th className="p-4 text-left">
-                  Last Date
-                </th>
+                <th className="p-4 text-left">Last Date</th>
 
-                <th className="p-4 text-left">
-                  Actions
-                </th>
+                <th className="p-4 text-left">Actions</th>
               </tr>
-
             </thead>
 
             <tbody>
-
               {loading ? (
                 <tr>
                   <td
@@ -338,7 +282,6 @@ const Offers = () => {
                     "
                   >
                     <td className="p-4">
-
                       <img
                         src={offer.posterUrl}
                         alt={offer.name}
@@ -349,39 +292,26 @@ const Offers = () => {
                           object-cover
                         "
                       />
-
                     </td>
 
-                    <td className="p-4 font-medium">
-                      {offer.name}
-                    </td>
+                    <td className="p-4 font-medium">{offer.name}</td>
 
                     <td className="p-4">
-                      {new Date(
-                        offer.startDate
-                      ).toLocaleDateString()}
+                      {new Date(offer.startDate).toLocaleDateString()}
                     </td>
 
                     <td className="p-4">
                       {offer.lastDate
-                        ? new Date(
-                            offer.lastDate
-                          ).toLocaleDateString()
+                        ? new Date(offer.lastDate).toLocaleDateString()
                         : "N/A"}
                     </td>
 
                     <td className="p-4">
-
                       <div className="flex gap-2">
-
                         <button
                           onClick={() => {
-                            setSelectedOffer(
-                              offer
-                            );
-                            setShowViewModal(
-                              true
-                            );
+                            setSelectedOffer(offer);
+                            setShowViewModal(true);
                           }}
                           className="
                             bg-green-500
@@ -394,11 +324,7 @@ const Offers = () => {
                         </button>
 
                         <button
-                          onClick={() =>
-                            openEditModal(
-                              offer
-                            )
-                          }
+                          onClick={() => openEditModal(offer)}
                           className="
                             bg-blue-500
                             text-white
@@ -410,11 +336,7 @@ const Offers = () => {
                         </button>
 
                         <button
-                          onClick={() =>
-                            deleteOffer(
-                              offer._id
-                            )
-                          }
+                          onClick={() => deleteOffer(offer._id)}
                           className="
                             bg-red-500
                             text-white
@@ -424,21 +346,14 @@ const Offers = () => {
                         >
                           <FaTrash />
                         </button>
-
                       </div>
-
                     </td>
-
                   </tr>
                 ))
               )}
-
             </tbody>
-
           </table>
-
         </div>
-
       </div>
 
       {/* ADD / EDIT MODAL */}
@@ -467,27 +382,16 @@ const Offers = () => {
             "
           >
             <div className="flex justify-between items-center mb-6">
-
               <h2 className="text-3xl font-bold">
-                {selectedOffer
-                  ? "Edit Offer"
-                  : "Add Offer"}
+                {selectedOffer ? "Edit Offer" : "Add Offer"}
               </h2>
 
-              <button
-                onClick={() =>
-                  setShowModal(false)
-                }
-              >
+              <button onClick={() => setShowModal(false)}>
                 <FaTimes />
               </button>
-
             </div>
 
-            <form
-              onSubmit={submitHandler}
-              className="space-y-4"
-            >
+            <form onSubmit={submitHandler} className="space-y-4">
               <input
                 type="text"
                 name="name"
@@ -533,17 +437,44 @@ const Offers = () => {
                 "
               />
 
-              <input
-                type="file"
-                accept="image/*"
-                onChange={imageHandler}
+              <div
                 className="
-                  w-full
-                  border
-                  p-3
-                  rounded-lg
-                "
-              />
+    flex
+    items-center
+    border
+    rounded-lg
+    overflow-hidden
+  "
+              >
+                <label
+                  htmlFor="imageUpload"
+                  className="
+      bg-(--primaryColor)
+      text-white
+      px-4
+      py-3
+      cursor-pointer
+      border-r
+      border-gray-300
+    "
+                >
+                  Choose File
+                </label>
+
+                <span className="px-4 text-gray-500 flex-1">
+                  {formData.imageUrl
+                    ? formData.imageUrl.name
+                    : "No file selected"}
+                </span>
+
+                <input
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={imageHandler}
+                  className="hidden"
+                />
+              </div>
 
               {previewImage && (
                 <img
@@ -596,13 +527,9 @@ const Offers = () => {
                   rounded-lg
                 "
               >
-                {selectedOffer
-                  ? "Update Offer"
-                  : "Add Offer"}
+                {selectedOffer ? "Update Offer" : "Add Offer"}
               </button>
-
             </form>
-
           </div>
         </div>
       )}
@@ -631,19 +558,11 @@ const Offers = () => {
             "
           >
             <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold">Offer Details</h2>
 
-              <h2 className="text-3xl font-bold">
-                Offer Details
-              </h2>
-
-              <button
-                onClick={() =>
-                  setShowViewModal(false)
-                }
-              >
+              <button onClick={() => setShowViewModal(false)}>
                 <FaTimes />
               </button>
-
             </div>
 
             <img
@@ -657,68 +576,40 @@ const Offers = () => {
               "
             />
 
-            <h3 className="text-3xl font-bold mt-6">
-              {selectedOffer.name}
-            </h3>
+            <h3 className="text-3xl font-bold mt-6">{selectedOffer.name}</h3>
 
             <div className="mt-4">
-              <h4 className="font-bold">
-                Description
-              </h4>
+              <h4 className="font-bold">Description</h4>
 
-              <p className="mt-2">
-                {
-                  selectedOffer.description
-                }
-              </p>
+              <p className="mt-2">{selectedOffer.description}</p>
             </div>
 
             <div className="mt-4">
-              <h4 className="font-bold">
-                Requirements
-              </h4>
+              <h4 className="font-bold">Requirements</h4>
 
-              <p className="mt-2">
-                {
-                  selectedOffer.requirements
-                }
-              </p>
+              <p className="mt-2">{selectedOffer.requirements}</p>
             </div>
 
             <div className="mt-4 flex gap-8">
-
               <div>
-                <h4 className="font-bold">
-                  Start Date
-                </h4>
+                <h4 className="font-bold">Start Date</h4>
 
-                <p>
-                  {new Date(
-                    selectedOffer.startDate
-                  ).toLocaleDateString()}
-                </p>
+                <p>{new Date(selectedOffer.startDate).toLocaleDateString()}</p>
               </div>
 
               <div>
-                <h4 className="font-bold">
-                  Last Date
-                </h4>
+                <h4 className="font-bold">Last Date</h4>
 
                 <p>
                   {selectedOffer.lastDate
-                    ? new Date(
-                        selectedOffer.lastDate
-                      ).toLocaleDateString()
+                    ? new Date(selectedOffer.lastDate).toLocaleDateString()
                     : "N/A"}
                 </p>
               </div>
-
             </div>
-
           </div>
         </div>
       )}
-
     </div>
   );
 };

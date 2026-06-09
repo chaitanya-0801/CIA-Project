@@ -28,20 +28,19 @@ const StudentStories = () => {
       {successStoryData == null ? (
         <div className="">Fetching</div>
       ) : (
-          
-          <div className="flex flex-wrap justify-center gap-8 mt-16">
-  {successStoryData.length === 0 ? (
-    <div
-      className="
+        <div className="flex flex-wrap justify-center gap-8 mt-16">
+          {successStoryData.length === 0 ? (
+            <div
+              className="
         w-full
         flex
         justify-center
         items-center
         py-20
       "
-    >
-      <div
-        className="
+            >
+              <div
+                className="
           bg-white
           px-10
           py-8
@@ -49,21 +48,22 @@ const StudentStories = () => {
           shadow-lg
           text-center
         "
-      >
-        <h3 className="text-2xl font-bold text-(--primaryText)">
-          No Students Available Currently
-        </h3>
+              >
+                <h3 className="text-2xl font-bold text-(--primaryText)">
+                  No Students Available Currently
+                </h3>
 
-        <p className="text-(--secondaryText) mt-3">
-          Success stories will appear here once students share their experiences.
-        </p>
-      </div>
-    </div>
-  ) : (
-    successStoryData.map((student) => (
-      <div
-        key={student._id}
-        className="
+                <p className="text-(--secondaryText) mt-3">
+                  Success stories will appear here once students share their
+                  experiences.
+                </p>
+              </div>
+            </div>
+          ) : (
+            successStoryData.map((student) => (
+              <div
+                key={student._id}
+                className="
           w-full
           md:w-[47%]
           lg:w-[31%]
@@ -74,14 +74,44 @@ const StudentStories = () => {
           hover:-translate-y-2
           transition-all
         "
-      >
-        {/* Your Existing Card */}
-      </div>
-    ))
-  )}
-</div>
-          
-        
+              >
+                  
+                      {" "}
+                      <img
+                        src={student.imageUrl}
+                        alt={student.name}
+                        className="w-full h-64 object-cover"
+                      />{" "}
+                      <div className="p-6">
+                        {" "}
+                        <div className="flex items-center gap-2 text-green-600 font-semibold">
+                          {" "}
+                          <FaCheckCircle /> Visa Approved{" "}
+                        </div>{" "}
+                        <h3 className="text-2xl font-bold mt-3">
+                          {student.name}
+                        </h3>{" "}
+                        <p className="text-(--primaryColor) font-medium">
+                          {" "}
+                          {student.serviceType}{" "}
+                        </p>{" "}
+                        <p className="text-sm text-gray-500">
+                          {student.country}
+                        </p>{" "}
+                        <div className="mt-4">
+                          {" "}
+                          <FaQuoteLeft className="text-(--primaryColor) text-2xl" />{" "}
+                        </div>{" "}
+                        <p className="mt-3 text-(--secondaryText) leading-7">
+                          {" "}
+                          {student.message}{" "}
+                        </p>{" "}
+                      </div>{" "}
+                    </div>
+                  
+            ))
+          )}
+        </div>
       )}
     </div>
   );

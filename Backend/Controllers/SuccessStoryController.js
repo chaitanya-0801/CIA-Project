@@ -16,10 +16,16 @@ const newSuccessStory = async (req, res) => {
       imageUrl:imagepath,
     });
     await successStory.save();
-    res.status(201).json({ message: "Success story created successfully" });
+    res.status(201).json({
+      success:true,
+      message: "Success story created successfully"
+    });
   } catch (error) {
     console.error("Error creating success story:", error);
-    res.status(500).json({ message: "Failed to create success story" });
+    res.status(500).json({
+      success:false,
+      message: "Failed to create success story"
+    });
   }
 };
 

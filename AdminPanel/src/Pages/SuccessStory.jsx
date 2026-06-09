@@ -6,14 +6,10 @@ import { FaPlus, FaEdit, FaTrash, FaEye, FaTimes } from "react-icons/fa";
 const SuccessStory = () => {
   const [stories, setstories] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [showModal, setShowModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
-
   const [selectedstory, setSelectedstory] = useState(null);
-
   const [previewImage, setPreviewImage] = useState("");
-
   const [formData, setFormData] = useState({
     name: "",
     country: "",
@@ -111,7 +107,9 @@ const SuccessStory = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    const toastId = toast.loading(
+      selectedstory ? "Updating Story..." : "Adding Story...",
+    );
     try {
       const data = new FormData();
 
@@ -138,25 +136,27 @@ const SuccessStory = () => {
           },
         );
 
-        if (response.data.success) {
-          toast.success("story Updated");
-        }
+        toast.success(response.data.message || "Story Updated Successfully", {
+          id: toastId,
+        });
       } else {
         const response = await axiosInstance.post("/admin/add-story", data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-
-        toast.success(response.data.message || "story Added Successfully");
+        toast.success(response.data.message || "Story Added Successfully", {
+          id: toastId,
+        });
       }
 
       fetchstories();
       setShowModal(false);
     } catch (error) {
       console.log(error);
-
-      toast.error(error?.response?.data?.message || "Operation Failed");
+      toast.error(error?.response?.data?.message || "Operation Failed", {
+        id: toastId,
+      });
     }
   };
 
@@ -189,7 +189,7 @@ const SuccessStory = () => {
 
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-4xl font-bold">Manage stories</h1>
+          <h1 className="text-4xl font-bold">Manage Success Stories</h1>
 
           <p className="text-gray-500 mt-2">
             Create, Edit and Manage all stories.
@@ -227,7 +227,6 @@ const SuccessStory = () => {
                 <th className="p-4 text-left">Student Name</th>
 
                 <th className="p-4 text-left">Service Type</th>
-
 
                 <th className="p-4 text-left">Actions</th>
               </tr>
@@ -282,11 +281,7 @@ const SuccessStory = () => {
 
                     <td className="p-4 font-medium">{story.name}</td>
 
-                    <td className="p-4">
-                      {story.serviceType}
-                    </td>
-
-                 
+                    <td className="p-4">{story.serviceType}</td>
 
                     <td className="p-4">
                       <div className="flex gap-2">
@@ -421,17 +416,44 @@ const SuccessStory = () => {
                 "
               />
 
-              <input
-                type="file"
-                accept="image/*"
-                onChange={imageHandler}
+              <div
                 className="
-                  w-full
-                  border
-                  p-3
-                  rounded-lg
-                "
-              />
+    flex
+    items-center
+    border
+    rounded-lg
+    overflow-hidden
+  "
+              >
+                <label
+                  htmlFor="imageUpload"
+                  className="
+      bg-(--primaryColor)
+      text-white
+      px-4
+      py-3
+      cursor-pointer
+      border-r
+      border-gray-300
+    "
+                >
+                  Choose File
+                </label>
+
+                <span className="px-4 text-gray-500 flex-1">
+                  {formData.imageUrl
+                    ? formData.imageUrl.name
+                    : "No file selected"}
+                </span>
+
+                <input
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={imageHandler}
+                  className="hidden"
+                />
+              </div>
 
               {previewImage && (
                 <img
@@ -451,6 +473,7 @@ const SuccessStory = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                placeholder="Enter Student's Message"
                 required
                 className="
                   w-full
@@ -501,7 +524,7 @@ const SuccessStory = () => {
             "
           >
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold">story Details</h2>
+              <h2 className="text-3xl font-bold">Student Details</h2>
 
               <button onClick={() => setShowViewModal(false)}>
                 <FaTimes />
@@ -522,33 +545,20 @@ const SuccessStory = () => {
             <h3 className="text-3xl font-bold mt-6">{selectedstory.name}</h3>
 
             <div className="mt-4">
-              <h4 className="font-bold">country</h4>
+              <h4 className="font-bold">Country</h4>
 
               <p className="mt-2">{selectedstory.country}</p>
             </div>
 
             <div className="mt-4">
-              <h4 className="font-bold">serviceType</h4>
+              <h4 className="font-bold">Service Type</h4>
 
               <p className="mt-2">{selectedstory.serviceType}</p>
             </div>
 
             <div className="mt-4 flex gap-8">
-              <div>
-                <h4 className="font-bold">Start Date</h4>
-
-                <p>{new Date(selectedstory.startDate).toLocaleDateString()}</p>
-              </div>
-
-              <div>
-                <h4 className="font-bold">Last Date</h4>
-
-                <p>
-                  {selectedstory.lastDate
-                    ? new Date(selectedstory.lastDate).toLocaleDateString()
-                    : "N/A"}
-                </p>
-              </div>
+              <h4 className="font-bold">Message By Student</h4>
+              {selectedstory.message}
             </div>
           </div>
         </div>

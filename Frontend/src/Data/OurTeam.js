@@ -20,15 +20,15 @@ const OurTeamData = [
     message:
       "We provide personalized counseling and expert support to help students choose the right universities, courses, and visa pathways for their future success.",
   },
-  {
-    name: "John Doe",
-    role: "Senior Consultant",
-    image: Director,
-    contact: "+91 98765 43212",
-    email: "john@cia.com",
-    message:
-      "Our mission is to make the immigration and admission process simple, transparent, and stress-free for every student and professional.",
-  },
+  // {
+  //   name: "John Doe",
+  //   role: "Senior Consultant",
+  //   image: Director,
+  //   contact: "+91 98765 43212",
+  //   email: "john@cia.com",
+  //   message:
+  //     "Our mission is to make the immigration and admission process simple, transparent, and stress-free for every student and professional.",
+  // },
 ];
 
 export default OurTeamData;

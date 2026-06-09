@@ -8,8 +8,8 @@ import router from './Routes/BasicRoutes.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <Toaster position="top-right" />
-    </RouterProvider>
+      <Toaster position="top-center" />
+    <RouterProvider router={router}/>
+    {/* </RouterProvider> */}
   </StrictMode>,
 )

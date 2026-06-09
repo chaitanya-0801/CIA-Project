@@ -21,6 +21,7 @@ const Login = () => {
   } = useForm();
 
   const submitHandler = async (data) => {
+    const toastId=toast.loading("Logining...")
     try {
       setLoading(true);
       const response = await loginAdmin(data);
@@ -36,14 +37,18 @@ const Login = () => {
           JSON.stringify(response.data.admin)
         );
 
-        toast.success("Login Successful");
+        toast.success("Login Successful", {
+          id:toastId,
+        });
 
         navigate("/dashboard");
       }
     } catch (error) {
       toast.error(
         error?.response?.data?.message ||
-          "Invalid Credentials"
+        "Invalid Credentials", {
+            id:toastId,
+          }
       );
     } finally {
       setLoading(false);
