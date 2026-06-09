@@ -42,11 +42,11 @@ const AdminSidebar = () => {
       icon: FaEnvelope,
       path: "/offers",
     },
-    // {
-    //   name: "Reviews",
-    //   icon: FaStar,
-    //   path: "/reviews",
-    // },
+    {
+      name: "Success Stories",
+      icon: FaStar,
+      path: "/stories",
+    },
     {
       name: "Admins",
       icon: FaUsers,

@@ -13,7 +13,7 @@ const newSuccessStory = async (req, res) => {
       country,
       serviceType,
       message,
-      imageUrl:path,
+      imageUrl:imagepath,
     });
     await successStory.save();
     res.status(201).json({ message: "Success story created successfully" });
@@ -33,4 +33,99 @@ const getAllSuccessStories = async (req, res) => {
   }
 };
 
-export { newSuccessStory, getAllSuccessStories };
+ const updateSuccessStory = async (
+  req,
+  res
+) => {
+  try {
+    const { id } = req.params;
+
+    const story =
+      await SuccessStory.findById(id);
+
+    if (!story) {
+      return res.status(404).json({
+        success: false,
+        message: "Success Story not found",
+      });
+    }
+
+    let imageUrl = story.imageUrl;
+
+    if (req.files?.imageUrl) {
+      imageUrl = await uploadImage(
+        req.files.imageUrl.tempFilePath
+      );
+    }
+
+    const updatedStory =
+      await SuccessStory.findByIdAndUpdate(
+        id,
+        {
+          name: req.body.name,
+          country: req.body.country,
+          serviceType:
+            req.body.serviceType,
+          message: req.body.message,
+          imageUrl,
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
+    return res.status(200).json({
+      success: true,
+      message:
+        "Success Story Updated Successfully",
+      story: updatedStory,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+ const deleteSuccessStory = async (
+  req,
+  res
+) => {
+  try {
+    const { id } = req.params;
+    console.log("id",id)
+    const deletedStory =
+      await SuccessStory.findByIdAndDelete(
+        id
+      );
+
+    if (!deletedStory) {
+      return res.status(404).json({
+        success: false,
+        message: "Success Story not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message:
+        "Success Story Deleted Successfully",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+
+export { newSuccessStory, getAllSuccessStories,deleteSuccessStory,updateSuccessStory };

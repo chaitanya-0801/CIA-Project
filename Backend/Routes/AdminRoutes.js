@@ -4,7 +4,12 @@ import {
   getAllContactForms,
   updateContactFormStatus,
 } from "../Controllers/ContactFormController.js";
-import { newSuccessStory } from "../Controllers/SuccessStoryController.js";
+import {
+  newSuccessStory,
+  deleteSuccessStory,
+  updateSuccessStory,
+  getAllSuccessStories,
+} from "../Controllers/SuccessStoryController.js";
 import {
   Login,
   createMoreAdmin,
@@ -27,16 +32,20 @@ adminRoutes.get("/demo", (req, res) => {
 });
 adminRoutes.post("/login", Login);
 
-adminRoutes.post("/success-stories", checkAdmin, newSuccessStory);
+adminRoutes.post("/add-story", checkAdmin, newSuccessStory);
+adminRoutes.post("/update-story/:id", checkAdmin, updateSuccessStory);
+adminRoutes.delete("/delete-story/:id", checkAdmin, deleteSuccessStory);
+
 adminRoutes.get("/contact-forms", checkAdmin, getAllContactForms);
 
 adminRoutes.post("/create-admin", checkSuperAdmin, createMoreAdmin);
 adminRoutes.get("/all-admins", checkSuperAdmin, allAdmins);
+
 adminRoutes.post("/add-offer", checkAdmin, addOffer);
 adminRoutes.put("/update-offer/:id", checkAdmin, updateOffer);
 adminRoutes.delete("/delete-offer/:id", checkAdmin, deleteOffer);
-adminRoutes.put("/contact-forms/:id", updateContactFormStatus);
 
+adminRoutes.put("/contact-forms/:id", updateContactFormStatus);
 adminRoutes.get("/dashboard-stats", checkAdmin, dashboardStats);
 
 export default adminRoutes;

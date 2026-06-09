@@ -6,6 +6,7 @@ import Dashboard from "../Pages/Dashboard";
 import Queries from "../Pages/Queries";
 import Admins from '../Pages/Admins'
 import Offers from "../Pages/Offers";
+import SuccessStory from "../Pages/SuccessStory";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/offers",
         element: <Offers />,
+      },
+      {
+        path: "/stories",
+        element: <SuccessStory />,
       },
    
       {
