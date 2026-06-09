@@ -6,14 +6,14 @@ import adminEnquiryTemplate from '../MailTemplete/adminEnquiryTemplate.js'
 const newContactForm = async (req, res) => {
   try {
     const { name, email, phone, service, message } = req.body;
-    const contactForm = new ContactForm({
+    const newContactForm = new ContactForm({
       name,
       email,
       phone,
       service,
       message,
     });
-    await contactForm.save();
+    await newContactForm.save();
     const html1 = enquiryReceivedTemplate({
       name,
       email,
