@@ -16,7 +16,7 @@ const Offer = () => {
         setOffers(response.data.offers || []);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -16,7 +16,7 @@ const TestimonialSection = () => {
       const res = await getAllReview();
       setAllReview(res.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -3,7 +3,7 @@ import axiosInstance from '../Config/axiosInstance.js';
 
 
 export const submitForm = async (data) => {
-    console.log(data)
+    // console.log(data)
     return await axiosInstance.post('/contact',data)
 }
 

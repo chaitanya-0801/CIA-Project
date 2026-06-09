@@ -18,15 +18,15 @@ const ReviewModal = ({ onClose }) => {
       const toastId = toast.loading("Submitting review...");
 
       const formData = new FormData();
-      console.log(formData);
-      console.log(data.imageUrl);
+      // console.log(formData);
+      // console.log(data.imageUrl);
       formData.append("name", data.name);
       formData.append("email", data.email);
       formData.append("rating", data.rating);
       formData.append("message", data.message);
       formData.append("imageUrl", data.imageUrl[0]);
 
-      console.log([...formData.entries()]);
+      // console.log([...formData.entries()]);
 
       await addReview(formData);
 
@@ -42,7 +42,7 @@ const ReviewModal = ({ onClose }) => {
       onClose();
     } catch (error) {
       toast.error("Failed to submit review");
-      console.log(error);
+      // console.log(error);
     }
   };
 

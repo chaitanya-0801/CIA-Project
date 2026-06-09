@@ -1,12 +1,10 @@
 import axios from "axios";
 
-console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
-
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL:
+    import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_BASE_URL_2,
   headers: {
-  "Content-Type": "multipart/form-data",
-
+    "Content-Type": "multipart/form-data",
   },
 });
 
