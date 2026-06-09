@@ -29,7 +29,7 @@ const TestimonialSection = () => {
       <h2 className="text-5xl font-bold text-(--primaryText) text-center ">
         Client Testimonials
       </h2>
-      <p className="w-1/2 mx-auto text-center text-(--secondaryText) p-4">Discover what our students and clients have to say about their journey with us. Their experiences highlight our dedication to making study, work, and immigration dreams a reality.</p>
+      <p className="max-w-2xl mx-auto text-center text-(--secondaryText) p-4">Discover what our students and clients have to say about their journey with us. Their experiences highlight our dedication to making study, work, and immigration dreams a reality.</p>
       {
         allReview == null ? (<>Fetching</>) : (
           
