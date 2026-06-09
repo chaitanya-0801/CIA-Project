@@ -1,4 +1,4 @@
-import Director from "../../assets/Director.jpg";
+import Director from "../../assets/Director.jpeg";
 
 const DirectorMessage = () => {
   return (

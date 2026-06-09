@@ -35,11 +35,12 @@ const OurTeam = () => {
         src={member.image}
         alt={member.name}
         className="
-          w-full
+          w-[60%]
           h-64
           rounded-xl
-          object-cover
+          object-fit
           border-2
+          mx-auto
           border-(--primaryColor)
         "
       />

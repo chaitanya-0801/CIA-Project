@@ -1,4 +1,5 @@
-import Director from "../assets/Director.jpg";
+import Director from "../assets/Director.jpeg";
+import Team1 from '../assets/Team1.jpeg'
 
 const OurTeamData = [
   {
@@ -6,14 +7,14 @@ const OurTeamData = [
     role: "Director",
     image: Director,
     contact: "+91 98765 43210",
-    email: "director@cia.com",
+    email: "cialadwa@gmail.com",
     message:
       "At Chaudhary Immigration Academy, our goal is to guide students and professionals toward successful international opportunities. We are committed to providing honest advice, personalized counseling, and reliable visa assistance to make your journey abroad smooth and stress-free.",
   },
   {
     name: "Jyoti Devi",
     role: "Senior Consultant",
-    image: Director,
+    image: Team1,
     contact: "+91 98765 43211",
     email: "jyoti@cia.com",
     message:

@@ -23,7 +23,6 @@ const Login = () => {
   const submitHandler = async (data) => {
     try {
       setLoading(true);
-
       const response = await loginAdmin(data);
 
       if (response.data.success) {
