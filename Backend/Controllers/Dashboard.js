@@ -1,4 +1,4 @@
-import ContactForm from "../Models/contactFormModel.js";
+import ContactForm from "../Models/ContactFormModel.js";
 import TestimonialsModel from "../Models/TestimonialsModel.js";
 import OfferModel from "../Models/OffersModel.js";
 
