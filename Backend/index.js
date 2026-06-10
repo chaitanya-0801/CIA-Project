@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import cors from 'cors'
+import cors from "cors";
 import fileUpload from "express-fileupload";
 
 dotenv.config();
@@ -15,10 +15,10 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(
-    fileUpload({
-        useTempFiles: true,
-        tempFileDir: "/tmp/",
-    })
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  }),
 );
 
 const allowedOrigins = [
@@ -26,8 +26,9 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://cia-ladwa.vercel.app",
   "https://admin-cia-ladwa.vercel.app",
-    "https://www.cialadwa.online",
-    "https://admin.cialadwa.online"
+  "https://www.cialadwa.online",
+  "https://cialadwa.online",
+  "https://admin.cialadwa.online",
 ];
 
 app.use(
@@ -40,7 +41,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 connectDB();
 const PORT = process.env.PORT || 3000;
