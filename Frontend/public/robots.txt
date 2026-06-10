@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cialadwa.online/sitemap.xml
