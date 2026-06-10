@@ -27,7 +27,7 @@ const allowedOrigins = [
   "https://cia-ladwa.vercel.app",
   "https://admin-cia-ladwa.vercel.app",
     "https://www.cialadwa.online",
-    "https://www.admin.cialadwa.online"
+    "https://admin.cialadwa.online"
 ];
 
 app.use(
