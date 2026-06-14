@@ -7,11 +7,16 @@ import Queries from "../Pages/Queries";
 import Admins from '../Pages/Admins'
 import Offers from "../Pages/Offers";
 import SuccessStory from "../Pages/SuccessStory";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: '*',
+    element:<ErrorPage/>,
   },
 
   {

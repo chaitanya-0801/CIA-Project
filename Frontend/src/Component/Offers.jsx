@@ -76,8 +76,8 @@ const Offer = () => {
                 alt={offer.name}
                 className="
                   w-full
-                  h-[400px]
-                  object-cover
+                  h-100
+                  object-fit
                 "
               />
 

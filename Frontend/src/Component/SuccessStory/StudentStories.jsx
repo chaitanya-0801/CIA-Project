@@ -80,7 +80,7 @@ const StudentStories = () => {
                       <img
                         src={student.imageUrl}
                         alt={student.name}
-                        className="w-full h-64 object-cover"
+                        className="w-full h-75 object-fit"
                       />{" "}
                       <div className="p-6">
                         {" "}
