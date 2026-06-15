@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import SkeletonReview from "./SkeletonReview";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -32,11 +33,11 @@ const TestimonialSection = () => {
       <p className="max-w-2xl mx-auto text-center text-(--secondaryText) p-4">Discover what our students and clients have to say about their journey with us. Their experiences highlight our dedication to making study, work, and immigration dreams a reality.</p>
      {
   allReview === null ? (
-    <div className="flex justify-center py-16">
-      <p className="text-xl text-gray-500">
-        Loading Reviews...
-      </p>
-    </div>
+    <div className="flex flex-wrap gap-8 mt-16 justify-center">
+    {    Array.from({ length: 3 }).map((_, index) => (
+          <SkeletonReview key={index} />
+      ))}
+        </div>
   ) : allReview.length === 0 ? (
     <div className="flex justify-center py-16">
       <div

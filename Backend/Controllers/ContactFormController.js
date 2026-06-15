@@ -1,7 +1,7 @@
 import sendMail from "../Utils/SendMail.js";
 import ContactForm from "../Models/ContactFormModel.js";
 import enquiryReceivedTemplate from "../MailTemplete/enquiryReceivedTemplate.js";
-import adminEnquiryTemplate from '../MailTemplete/adminEnquiryTemplate.js'
+import adminEnquiryTemplate from "../MailTemplete/adminEnquiryTemplate.js";
 
 const newContactForm = async (req, res) => {
   try {
@@ -22,13 +22,13 @@ const newContactForm = async (req, res) => {
     });
     // Send confirmation email
     await sendMail(email, "Contact Form Submission", html1);
-const html2=adminEnquiryTemplate({
-    name,
-    email,
-    phone,
-    service,
-    message,
-  })
+    const html2 = adminEnquiryTemplate({
+      name,
+      email,
+      phone,
+      service,
+      message,
+    });
     await sendMail(
       "cialadwa@gmail.com",
       `New Query from ${name} for ${service}`,
@@ -43,10 +43,27 @@ const html2=adminEnquiryTemplate({
 
 const getAllContactForms = async (req, res) => {
   try {
-    const contactForms = await ContactForm.find();
+    const { search = "", status, limit, page } = req.query;
+    const skip = (Number(page) - 1) * Number(limit);
+
+    let query = {};
+
+    if (search) {
+      query.$or = [{ name: { $regex: search, $options: "i" } }];
+    }
+
+    if (status) {
+      query.status = status;
+    }
+    const total = await ContactForm.countDocuments();
+
+    const contactForms = await ContactForm.find(query)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
     res.status(200).json({
-      success:true,
-      contactForms
+      success: true,
+      contactForms,
+      total
     });
   } catch (error) {
     console.error("Error fetching contact forms:", error);
@@ -54,7 +71,7 @@ const getAllContactForms = async (req, res) => {
   }
 };
 
- const updateContactFormStatus = async (req, res) => {
+const updateContactFormStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -72,7 +89,7 @@ const getAllContactForms = async (req, res) => {
       {
         new: true,
         runValidators: true,
-      }
+      },
     );
 
     if (!updatedQuery) {
@@ -97,5 +114,4 @@ const getAllContactForms = async (req, res) => {
   }
 };
 
-
-export { newContactForm, getAllContactForms,updateContactFormStatus };
+export { newContactForm, getAllContactForms, updateContactFormStatus };

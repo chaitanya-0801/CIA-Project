@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { FaQuoteLeft, FaCheckCircle } from "react-icons/fa";
 import { getStory } from "../../ApiServices/backendService";
 
+import Skeleton from "./Skeleton";
+
+
 const StudentStories = () => {
   const [successStoryData, setSuccessStoryData] = useState(null);
 
@@ -26,7 +29,12 @@ const StudentStories = () => {
         with the support of Chaudhary Immigration Academy.
       </p>
       {successStoryData == null ? (
-        <div className="">Fetching</div>
+        
+        <div className="flex flex-wrap gap-8 mt-16 justify-center">
+    {    Array.from({ length: 3 }).map((_, index) => (
+          <Skeleton key={index} />
+      ))}
+        </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-8 mt-16">
           {successStoryData.length === 0 ? (
@@ -106,7 +114,8 @@ const StudentStories = () => {
                           {" "}
                           {student.message}{" "}
                         </p>{" "}
-                      </div>{" "}
+                </div>{" "}
+
                     </div>
                   
             ))
