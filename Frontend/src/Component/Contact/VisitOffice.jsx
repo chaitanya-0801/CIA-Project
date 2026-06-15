@@ -72,7 +72,7 @@ const VisitOffice = () => {
         <div className="rounded-xl overflow-hidden shadow-md">
           <iframe
             title="CIA Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.1234567890123!2d76.12345678901234!3d29.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d123456789012%3A0x1234567890123456!2sChaudhary%20Immigration%20Academy!5e0!3m2!1sen!2sin!4v1234567890123"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1630.7256147459577!2d77.04602127274809!3d29.997029319148915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1781502473795!5m2!1sen!2si"
             width="100%"
             height="250"
             style={{ border: 0 }}

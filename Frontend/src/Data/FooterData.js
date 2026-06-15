@@ -3,8 +3,6 @@
 import {
   FaFacebookF,
   FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
@@ -74,18 +72,11 @@ export const ContactInfo = [
 export const SocialLinks = [
   {
     icon: FaFacebookF,
-    link: "https://facebook.com",
+    link: "https://www.facebook.com/education.ladwa/",
   },
   {
     icon: FaInstagram,
-    link: "https://instagram.com",
+    link: "https://www.instagram.com/chaudhary_immgration_academy",
   },
-  {
-    icon: FaLinkedinIn,
-    link: "https://linkedin.com",
-  },
-  {
-    icon: FaYoutube,
-    link: "https://youtube.com",
-  },
+
 ];
