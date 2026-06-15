@@ -31,7 +31,7 @@ const newSuccessStory = async (req, res) => {
 
 const getAllSuccessStories = async (req, res) => {
   try {
-    const successStories = await SuccessStory.find();
+    const successStories = await SuccessStory.find().sort({createdAt:-1});
     res.status(200).json(successStories);
   } catch (error) {
     console.error("Error fetching success stories:", error);

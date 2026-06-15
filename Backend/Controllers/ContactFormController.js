@@ -57,7 +57,7 @@ const getAllContactForms = async (req, res) => {
     }
     const total = await ContactForm.countDocuments();
 
-    const contactForms = await ContactForm.find(query)
+    const contactForms = await ContactForm.find(query).sort({createdAt:-1})
       .skip((page - 1) * limit)
       .limit(Number(limit));
     res.status(200).json({

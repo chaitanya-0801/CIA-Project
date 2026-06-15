@@ -13,21 +13,24 @@ const OfferSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    },
-  
+  },
+
   description: {
     type: String,
     required: true,
-    },
-    requirements: {
-        type: String,
-        required:true,
+  },
+  requirements: {
+    type: String,
+    required: true,
   },
   lastDate: {
     type: Date,
-    },
-  
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const OfferModel = mongoose.model('Offer', OfferSchema)
-export default OfferModel
+const OfferModel = mongoose.model("Offer", OfferSchema);
+export default OfferModel;
